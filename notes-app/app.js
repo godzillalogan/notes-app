@@ -2,13 +2,13 @@ const validator = require('validator')
 const yargs = require('yargs')
 const notes = require('./notes.js')
 const chalk = require('chalk')
-const add = require('./utils.js')
-const getNotes = require('./notes.js')
+// const add = require('./utils.js')
+// const getNotes = require('./notes.js')
 // const command = process.argv[2]
 // const msg = getNotes()
 
 //Customize yargs version
-// yargs.version('1.1.0')
+yargs.version('1.1.0')
 
 //Create add cpmmand
 yargs.command({
@@ -50,8 +50,8 @@ yargs.command({
 yargs.command({
   command:'list',
   describe: 'list your notes',
-  handler: function () {
-    console.log('listing out all note')
+  handler() {
+    notes.listNotes()
   }
 })
 

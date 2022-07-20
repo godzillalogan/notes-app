@@ -30,6 +30,14 @@ const addNote = (title, body) =>{
 
 }
 
+const listNotes =() => {
+  const notes = loadNotes()
+  console.log(chalk.yellow.inverse('Your notes'))
+  notes.forEach((note) => {
+    console.log(note.title)
+  })
+}
+
 const saveNotes = (notes) => {
   const dataJSON = JSON.stringify(notes) //JSON.stringify() ：物件變 JSON
   fs.writeFileSync('notes.json', dataJSON)
@@ -47,7 +55,7 @@ const loadNotes = (title, body) => {
 
 const removeNote = (title) => {
   const notes = loadNotes()  //取得所有的note
-  console.log('notes',notes)
+  // console.log('notes',notes)
   //console.log(chalk.underline.green.inverse('欸嘿嘿嘿嘿ㄏ'));
 
   const notesToKeep = notes.filter((note) => { //留下不要刪除的
@@ -66,5 +74,6 @@ const removeNote = (title) => {
 module.exports = {
   getNotes: getNotes,
   addNote: addNote,
-  removeNote: removeNote
+  removeNote: removeNote,
+  listNotes: listNotes
 }
