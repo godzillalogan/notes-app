@@ -5,7 +5,7 @@ const getNotes = function (){
   return "ㄟ嘿嘿嘿嘿嘿嘿"
 }
 
-const addNote = function (title, body){
+const addNote = (title, body) =>{
   const notes = loadNotes()
   // console.log('notes: ',notes)
   // notes.push({
@@ -14,7 +14,7 @@ const addNote = function (title, body){
   // })
   // saveNotes(notes)
   // console.log('New note added')
-  const duplicateNotes = notes.filter(function(note){  //找看看json檔裡面有沒有title一樣的
+  const duplicateNotes = notes.filter((note) => {  //找看看json檔裡面有沒有title一樣的 
     return note.title === title
   })
   if(duplicateNotes.length === 0){
@@ -30,12 +30,12 @@ const addNote = function (title, body){
 
 }
 
-const saveNotes = function(notes){
+const saveNotes = (notes) => {
   const dataJSON = JSON.stringify(notes) //JSON.stringify() ：物件變 JSON
   fs.writeFileSync('notes.json', dataJSON)
 }
 
-const loadNotes = function (title, body){
+const loadNotes = (title, body) => {
   try{
     const dataBuffer = fs.readFileSync('notes.json')
     const dataJson = dataBuffer.toString()
@@ -45,12 +45,12 @@ const loadNotes = function (title, body){
   }
 }
 
-const removeNote = function (title){
+const removeNote = (title) => {
   const notes = loadNotes()  //取得所有的note
   console.log('notes',notes)
   //console.log(chalk.underline.green.inverse('欸嘿嘿嘿嘿ㄏ'));
 
-  const notesToKeep = notes.filter(function(note){ //留下不要刪除的
+  const notesToKeep = notes.filter((note) => { //留下不要刪除的
     return  note.title !== title
   })
   if(notes.length > notesToKeep.length){
