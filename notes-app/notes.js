@@ -14,10 +14,11 @@ const addNote = (title, body) =>{
   // })
   // saveNotes(notes)
   // console.log('New note added')
-  const duplicateNotes = notes.filter((note) => {  //找看看json檔裡面有沒有title一樣的 
+  const duplicateNote = notes.find((note) =>{
     return note.title === title
   })
-  if(duplicateNotes.length === 0){
+
+  if(!duplicateNote){
     notes.push({
       title: title,
       body: body
@@ -36,6 +37,19 @@ const listNotes =() => {
   notes.forEach((note) => {
     console.log(note.title)
   })
+}
+
+const readNotes =(title) => {
+  const notes = loadNotes()
+  const readNote = notes.find((note) =>{
+    return note.title === title
+  })
+  if(readNote){
+    console.log(chalk.green.inverse(readNote.title))
+    console.log(readNote.body)
+  }else{
+    console.log(chalk.red.inverse('找不到note,哭哭'))
+  }
 }
 
 const saveNotes = (notes) => {
@@ -75,5 +89,6 @@ module.exports = {
   getNotes: getNotes,
   addNote: addNote,
   removeNote: removeNote,
-  listNotes: listNotes
+  listNotes: listNotes,
+  readNotes: readNotes
 }
